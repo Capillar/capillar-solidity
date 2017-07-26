@@ -9,7 +9,7 @@ contract TokenCAP is ERC20, iTokenCAP
 	string 	public constant		symbol = "CAP";
 	string 	public constant		name = "Capillar.io platform token";
 	uint8 	public constant		decimals = 9;
-	uint 						supply = 1e19; 		// 10 billion tokens divisible up to 9 figures - can only be changed by burning tokens
+	uint 						supply = 10e18; 	// 10 billion tokens divisible up to 9 figures - can only be changed by burning tokens
 	uint 						activeCount = 0;	// ammount of tradeable tokens minted
 	uint 						burnedCount = 0;  	// ammount of burned tokens
 
