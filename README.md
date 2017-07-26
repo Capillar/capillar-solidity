@@ -1,5 +1,6 @@
 # Capillario
 Logistics blockchain-based platform Capillario smart contracts public development.
+
 For more information about Capillario project visit [capillar.io](http://capillar.io/)
 
 ## About
