@@ -5,19 +5,22 @@ import "truffle/DeployedAddresses.sol";
 import "../contracts/TokenCAP.sol";
 import "../tools/ThrowProxy.sol";
 
-// Standalone testing for TokenCAP contract
+// Standalone testing suite S01 for TokenCAP contract
 contract Test_CAP
 {
-	TokenCAP inst;
-	ThrowProxy proxy;
+	TokenCAP 	inst;		// Instance of TokenCAP
+	ThrowProxy 	proxyImpl;	// Proxy for TokenCAP
+	TokenCAP	proxy;		// Proxy synonym
+
 	function Test_CAP()
 	{// setup
 		inst = new TokenCAP();
-		proxy = new ThrowProxy(address(inst));
+		proxyImpl = new ThrowProxy(address(inst));
+		proxy = TokenCAP(address(proxyImpl));
 	}
+
 	function testSimpleBurning() 
-	{
-		
+	{	// test S0101 - modeling burning single
 		bool res;
 
 		Assert.equal(inst.balanceOf(this), 	0, 				"S010101: Owner should have 0 balance initially");
@@ -32,18 +35,26 @@ contract Test_CAP
 		Assert.equal(inst.totalSupply(), expectedSupply, 	"S010104: Burning account should result in supply decrease");
 		
 		// using proxy to test throwing
-		TokenCAP(address(proxy)).burnBalance(this);
-		res = proxy.execute.gas(100000)();
+		proxy.burnBalance(this);
+		res = proxyImpl.execute.gas(1e5)();
 		Assert.isFalse(res, 								"S010105: Should throw when trying to burn from not owner");
 
-		inst.setOwner(proxy);
-		TokenCAP(address(proxy)).burnBalance(this);
-		res = proxy.execute.gas(100000)();
+		transferOwnerToProxy();
+		proxy.burnBalance(this);
+		res = proxyImpl.execute.gas(1e5)();
 		Assert.isFalse(res, 								"S010106: Should throw when trying to burn 0 ammount");
+		transferOwnerToTest();
 	}
-	// function testInitialBalanceWithNewMetaCoin() 
-	// {
 
-	// 	//Assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 MetaCoin initially");
-	// }
+	function transferOwnerToProxy() internal
+	{// helper function transfering owner to proxy
+		require(inst.owner() == address(this));
+		inst.setOwner(address(proxy));
+	}
+	function transferOwnerToTest() internal
+	{// helper function transfering owner to test contract
+		require(inst.owner() == address(proxy));
+		proxy.setOwner(address(this));
+		proxyImpl.execute.gas(5e4)();	// set owner function shouldnt take more than 50000 gas
+	}
 }
