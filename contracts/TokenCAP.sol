@@ -1,4 +1,4 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.4.13;
 
 import "./external/ERC20.sol";
 import "./interfaces/iTokenCAP.sol";
@@ -21,7 +21,7 @@ contract TokenCAP is ERC20, iTokenCAP
 	mapping (address => uint) irreducibles;
 
 	function TokenCAP() {} // constructor
-	function () payable { throw; } // fallback
+	function () payable { assert(false); } // fallback
 
 	// ----------- Implementation for ERC20 functionality -------------------
 	function totalSupply() constant returns(uint totalSupply) 
@@ -37,21 +37,26 @@ contract TokenCAP is ERC20, iTokenCAP
 	
 	function transfer(address _to, uint _amount) returns (bool success)
 	{// Transfer fund from sender account to target account
-		if (_amount == 0 || balances[msg.sender] < irreducibles[msg.sender] + _amount)
+		if (_amount == 0 
+			|| balances[msg.sender] < irreducibles[msg.sender] + _amount)
+			// || balances[msg.sender] + _amount < balances[msg.sender] // do not test for overflow because balance is limited by supply
+			// || irreducibles[msg.sender] + _amount < irreducibles[msg.sender]) // this check is not needed because irreducibles is limited to supply
 			return false;
 		balances[msg.sender] -= _amount;
-		// do not test for overflow because supply should be limited by supply and balance is never negative
 		balances[_to] += _amount;
 		Transfer(msg.sender, _to, _amount);
 		return true;
 	}
 	function transferFrom(address _from, address _to, uint _amount) returns (bool success)
 	{
-		if (_amount == 0 || balances[msg.sender] < irreducibles[msg.sender] + _amount  || allowed[_from][msg.sender] < _amount)
+		if (_amount == 0 
+			|| balances[msg.sender] < irreducibles[msg.sender] + _amount  
+			|| allowed[_from][msg.sender] < _amount)
+			// || balances[msg.sender] + _amount < balances[msg.sender] // do not test for overflow because balance is limited by supply
+			// || irreducibles[msg.sender] + _amount < irreducibles[msg.sender]) // this check is not needed because irreducibles is limited to supply
 			return false;
 		allowed[_from][msg.sender] -= _amount;
 		balances[_from] -= _amount;
-		// do not test for overflow because supply should be limited by supply and balance is never negative
 		balances[_to] += _amount;
 		Transfer(_from, _to, _amount);
 		return true;
@@ -89,10 +94,13 @@ contract TokenCAP is ERC20, iTokenCAP
 		Minted(_to, _amount);
 		return true;
 	}
-	function limitAccount(address _acc, uint _limit) onlyOwner
+	function limitAccount(address _acc, uint _limit) onlyOwner returns(bool success)
 	{// Set irreducible remainder for account
+		if(_limit > supply)	// (!) prevents from overflowing in transfer function
+			return false;
 		irreducibles[_acc] = _limit;
 		Limited(_acc, _limit);
+		return true;
 	}
 	function burnNotDistrTokens(uint _amount) onlyOwner returns(bool success)
 	{// Burn _amount of tokens that were not yet distributed

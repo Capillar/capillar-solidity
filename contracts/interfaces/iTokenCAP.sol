@@ -18,7 +18,7 @@ contract iTokenCAP is owned
 	function mint(address _to, uint _amount) returns(bool success);
 
 	// Set irreducible remainder for account
-	function limitAccount(address _acc, uint _limit);
+	function limitAccount(address _acc, uint _limit) returns(bool success);
 
 	// Burn _amount of tokens that were not yet distributed
 	function burnNotDistrTokens(uint _amount) returns(bool success);

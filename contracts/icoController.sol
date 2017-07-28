@@ -12,7 +12,7 @@ contract icoController is owned
 	address public			team = 0x0;			// Address for tokens left for team
 
 	function icoController(address _db) { capDB = iTokenCAP(_db); }
-	function () payable { throw; } // fallback
+	function () payable { assert(false); } // fallback
 
 	modifier finished
 		{ require(isFinished); _; }
