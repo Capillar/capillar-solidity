@@ -10,6 +10,7 @@ Proof of concept folder contains initial test for implementing logistics functio
 
 ## Status
 **Platform contacts**: proof of concept
+
 **ICO contacts**: private testing, test coverage 50%
 
 ## Requirements
@@ -37,5 +38,5 @@ Tools used to compile contracts and run tests:
 ## Known Issues
 none
 
-## Reporting an issue
+## Reporting an Issue
 Feel free to open issues or request pull in test code
