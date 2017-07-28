@@ -50,10 +50,10 @@ contract TokenCAP is ERC20, iTokenCAP
 	function transferFrom(address _from, address _to, uint _amount) returns (bool success)
 	{
 		if (_amount == 0 
-			|| balances[msg.sender] < irreducibles[msg.sender] + _amount  
+			|| balances[_from] < irreducibles[_from] + _amount  
 			|| allowed[_from][msg.sender] < _amount)
-			// || balances[msg.sender] + _amount < balances[msg.sender] // do not test for overflow because balance is limited by supply
-			// || irreducibles[msg.sender] + _amount < irreducibles[msg.sender]) // this check is not needed because irreducibles is limited to supply
+			// || balances[_from] + _amount < balances[_from] // do not test for overflow because balance is limited by supply
+			// || irreducibles[_from] + _amount < irreducibles[_from]) // this check is not needed because irreducibles is limited to supply
 			return false;
 		allowed[_from][msg.sender] -= _amount;
 		balances[_from] -= _amount;
