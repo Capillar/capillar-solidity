@@ -1,10 +1,10 @@
-# Capillario
-Logistics blockchain-based platform Capillario smart contracts public development.
+# Capillar.io
+Logistics blockchain-based platform Capillar.io smart contracts public development.
 
 For more information about Capillario project visit [capillar.io](http://capillar.io/)
 
 ## About
-This repository contains files for testing Capillario ICO and platform contracts written in Solidity language.
+This repository contains files for testing ICO and platform contracts written in Solidity language.
 
 Proof of concept folder contains initial test for implementing logistics functionality using smart contracts.
 
