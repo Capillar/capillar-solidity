@@ -10,7 +10,7 @@ Proof of concept folder contains initial test for implementing logistics functio
 
 ## Requirements
 Tools used to compile contracts and run tests:
-1. Truffle 3.4.5 ([learn more](http://truffleframework.com/docs/))
+1. Truffle 3.4.6 ([learn more](http://truffleframework.com/docs/))
 1. TestRPC v4.0.1 ([learn more](https://github.com/ethereumjs/testrpc))
 1. NodeJS 5.0+ ([learn more](https://nodejs.org/en/))
 1. Solidity 0.4.11 ([learn more](https://solidity.readthedocs.io/en/develop/))
