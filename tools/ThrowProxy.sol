@@ -1,9 +1,10 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.4.13;
 
 import "truffle/Assert.sol";
 
 // ========= Contract for testing throwing functions ===============
-contract ThrowProxy 
+// see more info http://truffleframework.com/tutorials/testing-for-throws-in-solidity-tests
+contract ThrowProxy
 {
 	address public target;
 	bytes data;
@@ -11,9 +12,12 @@ contract ThrowProxy
 	function ThrowProxy(address _target) 
 		{ target = _target;	}    
 
-	//prime the data using the fallback function.
-	function() { data = msg.data; }
+	function()  //prime the data using the fallback function.
+		{ data = msg.data; }
 
 	function execute() returns (bool) 
 		{ return target.call(data); }
+
+	function remove()
+		{ selfdestruct(msg.sender); }
 }
