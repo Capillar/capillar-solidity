@@ -104,7 +104,8 @@ contract TokenCAP is ERC20, iTokenCAP
 	}
 	function burnNotDistrTokens(uint _amount) onlyOwner returns(bool success)
 	{// Burn _amount of tokens that were not yet distributed
-		if(burnedCount + _amount <= burnedCount || activeCount + _amount > supply)
+		if(activeCount + burnedCount + _amount <= activeCount + burnedCount 
+			|| activeCount + burnedCount + _amount > supply)
 			return false;
 		burnedCount += _amount;
 		supply -= _amount;
