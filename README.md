@@ -11,20 +11,22 @@ Proof of concept folder contains initial test for implementing logistics functio
 ## Status
 **Platform contacts**: proof of concept
 
-**ICO contacts**: private testing, test coverage 50%
+**ICO contacts**: private testing, test coverage 75%
 
 ## Requirements
 Tools used to compile contracts and run tests:
 1. Truffle 3.4.6 ([learn more](http://truffleframework.com/docs/))
 1. TestRPC v4.0.1 ([learn more](https://github.com/ethereumjs/testrpc))
-1. NodeJS 5.0+ ([learn more](https://nodejs.org/en/))
+1. NodeJS 6.0+ ([learn more](https://nodejs.org/en/))
 1. Solidity 0.4.13 ([learn more](https://solidity.readthedocs.io/en/develop/))
+1. ChaiJS 4.1.0. ([learn more](https://www.npmjs.com/package/chai))
 1. Windows, Linux or Mac OS X
 
 ## Setup
 1. Install NodeJS
 1. Use npm to install TestRPC and Truffle
 1. Pull repository files into local folder
+1. Install chai locally: `npm install --save-dev chai`
 1. Use `truffle compile` command in work folder to compile contracts
 1. Start `testrpc` with default parameters
 1. Use `truffle test` command to run tests
