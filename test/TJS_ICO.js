@@ -1,7 +1,10 @@
 var TokenCAP = artifacts.require("./TokenCAP.sol");
 var ICOControll = artifacts.require("./icoController.sol");
+var expect = require("chai").expect;
 
 // ============= Test suite for ICO functionality ==================
+// @using async + await
+// @using chai for parsing and assertion
 contract('ICO', function(accounts) 
 {
 	it("Should link token to ICO controll", function()
