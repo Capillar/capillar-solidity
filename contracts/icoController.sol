@@ -5,7 +5,7 @@ import "./interfaces/iTokenCAP.sol";
 //====== ICO contract - controller for CAP minting during ICO ================
 contract icoController is owned
 {
-	uint public constant	tokenLimit = 9e18;	// minting for ICO is limited to 90 % of all tokens
+	uint public constant	tokenLimit = 75e17;	// minting for ICO is limited to 75 % of all tokens
 	uint public				distributed = 0;	// ammount of distributed (minted) tokens
 	iTokenCAP	public 		capDB;				// address for CAP tokens database
 	bool public				isFinished = false; // flag of finishing ICO
