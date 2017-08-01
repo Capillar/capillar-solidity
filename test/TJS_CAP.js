@@ -1,9 +1,9 @@
 var TokenCAP = artifacts.require("./TokenCAP.sol"); 
 var ICOControll = artifacts.require("./icoController.sol");
 
+// Example for creating tests with JS and .then synchronization
 contract('TokenCAP', function(accounts) 
 {
-// TODO: test CAP token independentely
 	it("Shouldn't set initial balance for owner", function()
 	{ 
 		return TokenCAP.deployed()
@@ -26,6 +26,4 @@ contract('TokenCAP', function(accounts)
 				{ assert.equal(balance.valueOf(), 1e10, "Mint doesnt increase balance"); });
 		});
 	});
-
-// TODO: test irreducibles and send functionality
 });
