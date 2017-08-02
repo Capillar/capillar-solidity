@@ -1,27 +1,27 @@
+require('babel-polyfill');
+
 var TokenCAP = artifacts.require("./TokenCAP.sol");
 var ICOControll = artifacts.require("./icoController.sol");
 var expect = require("chai").expect;
 
+var ico;
+var cap;
+
 // ============= Test suite for ICO functionality ==================
 // @using async + await
-// @using chai for parsing and assertion
+// @using chai for parsing and expect chain synthax
 contract('ICO', function(accounts) 
 {
-	it("Should link token to ICO controll", function()
+	it("Should link token to ICO control", async function()
 	{ 
-		return ICOControll.deployed()
-		.then(function(instance) 
-			{  return instance.capDB.call();  })
-		.then(function(adr) 
-			{ assert.equal(adr.valueOf(), TokenCAP.address, "Address for CAP databse in controll is invalid"); })
-		.then(function()
-		{  
-			return TokenCAP.deployed()
-			.then(function(instance2) 
-				{  return instance2.owner.call(); })
-			.then(function(adr) 
-				{ assert.equal(adr.valueOf(), ICOControll.address, "Address for controll in database is invalid"); });
-		});
+		// ico = await ICOControll.deployed();
+		// cap = await TokenCAP.deployed();
+
+		// var icoDB = await ico.capDB.call();
+		// var capICO = await cap.owner.call();
+
+		// expect(icoDB).to.equal(cap);
+		// expect(capICO).to.equal(ico);
 	});
 	// TODO: test ICO functions
 });
