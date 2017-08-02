@@ -11,7 +11,7 @@ Proof of concept folder contains initial test for implementing logistics functio
 ## Status
 **Platform contacts**: proof of concept
 
-**ICO contacts**: private testing, test coverage 75%
+**ICO contacts**: private testing, test coverage 100%
 
 ## Requirements
 Tools used to compile contracts and run tests:
@@ -32,8 +32,8 @@ Tools used to compile contracts and run tests:
 1. Use `truffle test` command to run tests
 
 ## Contract Rollout (ICO)
-1. Test coverage 100% (see /tests in repository) [IN PROGRESS]
-1. Testing deployment in private testnet
+1. Test coverage 100% (see /tests in repository) [DONE]
+1. Testing deployment in private testnet [IN PROGRESS]
 1. Deployment in public testnet and public testing
 1. Deployment in main Ethereum network and distributing tokens
 
