@@ -9,8 +9,7 @@ contract icoController is owned
 	uint public				distributed = 0;	// ammount of distributed (minted) tokens
 	iTokenCAP	public 		capDB;				// address for CAP tokens database
 	bool public				isFinished = false; // flag of finishing ICO
-	address public			team = 0x0;			// Address for tokens left for team
-
+	
 	function icoController(address _db) { capDB = iTokenCAP(_db); }
 	function () payable { assert(false); } // fallback
 
@@ -22,20 +21,8 @@ contract icoController is owned
 	// --------- Interface of ICO lifecycle ---------------------
 	event ICOStopped();
 
-	function setTeam(address _newTeam) onlyOwner inProgress
-	{// determine address for team tokens
-		team = _newTeam;
-	}
 	function stopICO() onlyOwner inProgress         
 	{// Stop ICO - enables transfering control
-		require(team != 0x0);
-		if(distributed < tokenLimit)
-		{// minting undistributed tokens for team
-			uint dif = tokenLimit - distributed;
-			distributed = tokenLimit;
-			require(capDB.mint(team, dif));
-			capDB.limitAccount(team, dif);	// team cannot transfer tokens
-		}
 		isFinished = true; 
 		ICOStopped();   
 	}
