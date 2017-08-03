@@ -40,7 +40,7 @@ contract icoController is owned
 	{
 		require(distributed + _amount > distributed); 	// overflow and zero check
 		require(distributed + _amount <= tokenLimit); 	// make sure minting on ICO is limited
-		require(capDB.mint(_to, _amount));				// do the minting
 		distributed += _amount;
+		require(capDB.mint(_to, _amount));				// do the minting
 	}
 }
