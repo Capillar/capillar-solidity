@@ -80,9 +80,10 @@ contract TokenCAP is ERC20, iTokenCAP
 	function irreducibleOf(address _adr) constant returns(uint balance) 
 		{ return irreducibles[_adr]; }
 
-	event Minted(address indexed _to, uint _value);		// Tokens minted
-	event Burned(uint _value);							// Tokens burned
-	event Limited(address indexed _acc, uint _limit);	// Irreducible remainder changed
+	// Inherited events from iTokenCAP
+	//event Minted(address indexed _to, uint _value);		// Tokens minted
+	//event Burned(uint _value);							// Tokens burned
+	//event Limited(address indexed _acc, uint _limit);	// Irreducible remainder changed
 
 	function mint(address _to, uint _amount) onlyOwner returns(bool success)
 	{// minting new tokens
