@@ -1,31 +1,14 @@
 [
   {
-    "constant": false,
-    "inputs": [
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
       {
-        "name": "_newOwner",
+        "name": "",
         "type": "address"
       }
     ],
-    "name": "setOwner",
-    "outputs": [],
-    "payable": false,
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "distributeTokens",
-    "outputs": [],
     "payable": false,
     "type": "function"
   },
@@ -37,6 +20,19 @@
       {
         "name": "",
         "type": "address"
+      }
+    ],
+    "payable": false,
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "distributed",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -69,19 +65,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_hier",
-        "type": "address"
-      }
-    ],
-    "name": "transferControl",
-    "outputs": [],
-    "payable": false,
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "isFinished",
@@ -95,15 +78,19 @@
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
+        "name": "_to",
         "type": "address"
+      },
+      {
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
+    "name": "distributeTokens",
+    "outputs": [],
     "payable": false,
     "type": "function"
   },
@@ -116,15 +103,28 @@
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "distributed",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
-        "type": "uint256"
+        "name": "_hier",
+        "type": "address"
       }
     ],
+    "name": "transferControl",
+    "outputs": [],
+    "payable": false,
+    "type": "function"
+  },  
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "setOwner",
+    "outputs": [],
     "payable": false,
     "type": "function"
   },
