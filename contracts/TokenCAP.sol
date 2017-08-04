@@ -24,7 +24,7 @@ contract TokenCAP is ERC20, iTokenCAP
 	function () payable { assert(false); } // fallback
 
 	// ----------- Implementation for ERC20 functionality -------------------
-	function totalSupply() constant returns(uint totalSupply) 
+	function totalSupply() constant returns(uint total) 
 		{ return supply; }
 	function balanceOf(address _adr) constant returns(uint balance) 
 		{ return balances[_adr]; }
